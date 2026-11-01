@@ -1,0 +1,574 @@
+
+/* GENERAL DESIGN */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe4ec, #fce1f2, #fff0dc);
+    color: #70465a;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.container {
+    padding: 45px 15px;
+}
+
+h1 {
+    color: #c44b79;
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.container h2 {
+    color: #8e4770;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 19px;
+    margin: 20px;
+}
+
+.instruction {
+    color: #bd547d;
+    font-size: 17px;
+    margin: 20px;
+}
+
+/* BALLOONS */
+
+#balloon-container {
+    min-height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+}
+
+.balloon {
+    width: 55px;
+    height: 70px;
+    border-radius: 50% 50% 45% 45%;
+    cursor: pointer;
+    position: relative;
+    animation: floatBalloon 2s ease-in-out infinite alternate;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #a68a8e;
+    top: 68px;
+    left: 50%;
+}
+
+@keyframes floatBalloon {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+}
+
+#message {
+    color: #b94d78;
+    font-size: 21px;
+    padding: 15px;
+}
+
+/* PHOTO GALLERY */
+
+.photo-gallery {
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.photo-gallery h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.photo-gallery img {
+    width: 230px;
+    height: 260px;
+    object-fit: cover;
+    margin: 12px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(120, 60, 90, 0.2);
+    transition: 0.3s;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.04);
+}
+
+/* GIFT SECTION */
+
+.gift-section {
+    position: relative;
+    padding: 60px 15px;
+    margin: 30px 15px;
+    background: rgba(255,255,255,0.45);
+    border-radius: 25px;
+}
+
+.gift-section h2 {
+    color: #b94d78;
+    margin-bottom: 15px;
+}
+
+.gift-box {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 45px auto;
+    cursor: pointer;
+}
+
+.gift-body {
+    position: absolute;
+    width: 130px;
+    height: 95px;
+    background: #d77b9d;
+    bottom: 0;
+    left: 10px;
+    border-radius: 8px;
+    border: 2px solid #b94d78;
+}
+
+.gift-lid {
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    background: #f0b2c8;
+    top: 25px;
+    border-radius: 6px;
+    left: 0;
+    z-index: 2;
+    transition: 0.7s;
+}
+
+.gift-ribbon {
+    position: absolute;
+    width: 22px;
+    height: 120px;
+    background: #ffe0a3;
+    left: 64px;
+    top: 30px;
+    z-index: 3;
+}
+
+.gift-bow {
+    position: absolute;
+    top: -10px;
+    left: 53px;
+    z-index: 5;
+    font-size: 38px;
+}
+
+#ringInside {
+    position: absolute;
+    font-size: 55px;
+    left: 48px;
+    top: 45px;
+    opacity: 0;
+    transition: 1s;
+    z-index: 1;
+}
+
+.gift-box.open .gift-lid {
+    transform: translateY(-65px) rotate(-15deg);
+}
+
+.gift-box.open #ringInside {
+    opacity: 1;
+    transform: translateY(-75px);
+}
+
+#ringMessage {
+    display: none;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    background: white;
+    border-radius: 20px;
+    color: #b94d78;
+    box-shadow: 0 5px 15px #e7bdcc;
+}
+
+#ringMessage.show {
+    display: block;
+}
+
+.ring {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+/* URDU SURPRISE */
+
+.surprise-section {
+    padding: 50px 20px;
+    margin: 30px 15px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 25px;
+}
+
+.surprise-section h2 {
+    color: #b94d78;
+    margin-bottom: 15px;
+}
+
+.surprise-btn {
+    background: #c44b79;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 13px 28px;
+    margin: 20px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#surpriseMessage {
+    display: none;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    color: #a94d70;
+    line-height: 2;
+    box-shadow: 0 5px 20px #e7bdcc;
+}
+
+#surpriseMessage.show {
+    display: block;
+}
+
+.surprise-hearts {
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+/* HEART CAKE SECTION */
+
+.heartcake-section {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 65px 15px;
+    margin: 40px 15px;
+    background: linear-gradient(135deg, #fff7f5, #fce8ed, #fffaf2);
+    border-radius: 28px;
+}
+
+.heartcake-section h2 {
+    color: #a94d70;
+    font-size: 29px;
+    margin-bottom: 12px;
+}
+
+.heartcake-subtitle {
+    color: #987080;
+    margin-bottom: 30px;
+}
+
+.heartcake-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 310px;
+    overflow: hidden;
+}
+
+.heartcake {
+    width: 320px;
+    height: 280px;
+    position: relative;
+    margin: 15px auto;
+}
+
+.heartcake-shadow {
+    position: absolute;
+    width: 290px;
+    height: 25px;
+    background: #d5a6b3;
+    filter: blur(12px);
+    border-radius: 50%;
+    bottom: 5px;
+    left: 15px;
+}
+
+.heartcake-half {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    top: 10px;
+    background: linear-gradient(160deg, #fffdfc, #fce1e9 35%, #eeb5c7 65%, #d98da8);
+    border: 2px solid #e8b7c7;
+    box-shadow: 0 9px 15px rgba(150,80,110,0.18);
+    transition: transform 1.5s ease;
+}
+
+.left-half {
+    clip-path: polygon(50% 25%, 45% 16%, 32% 8%, 17% 10%, 5% 22%, 2% 38%, 8% 55%, 50% 92%);
+    transform-origin: right center;
+    z-index: 2;
+}
+
+.right-half {
+    clip-path: polygon(50% 25%, 55% 16%, 68% 8%, 83% 10%, 95% 22%, 98% 38%, 92% 55%, 50% 92%);
+    transform-origin: left center;
+    z-index: 2;
+}
+
+.heartcake-frosting {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: linear-gradient(#fff, #f8dce5);
+    border-radius: 50%;
+}
+
+.heartcake-roses {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-size: 24px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.heartcake-pearls {
+    position: absolute;
+    top: 135px;
+    width: 100%;
+    text-align: center;
+    color: #c99b49;
+    font-size: 22px;
+    letter-spacing: 4px;
+}
+
+.heartcake-topper {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    color: #b47a3e;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 2px 3px white;
+    pointer-events: none;
+}
+
+.heartcake-topper span {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 19px;
+}
+
+.heartcake-knife {
+    position: absolute;
+    top: -15px;
+    right: 5px;
+    font-size: 48px;
+    opacity: 0;
+    z-index: 10;
+    transform: rotate(-45deg);
+}
+
+.heartcake.cutting .heartcake-knife {
+    animation: heartKnifeCut 1.3s ease forwards;
+}
+
+@keyframes heartKnifeCut {
+    0% { opacity: 0; top: -15px; right: 5px; }
+    25% { opacity: 1; }
+    65% { top: 110px; right: 135px; }
+    100% { opacity: 0; top: 110px; right: 135px; }
+}
+
+.heartcake.cutting .left-half {
+    transform: translateX(-48px) rotate(-8deg);
+}
+
+.heartcake.cutting .right-half {
+    transform: translateX(48px) rotate(8deg);
+}
+
+.heartcake.cutting .heartcake-topper {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.heartcake-title {
+    color: #a94d70;
+    margin-top: 20px;
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
+
+#heartcakeInstruction {
+    color: #987080;
+    margin: 15px 0;
+}
+
+.heartcake-button {
+    background: linear-gradient(135deg, #a94d70, #df91ad);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 35px;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 5px 18px #d9a0b5;
+    transition: 0.3s;
+}
+
+.heartcake-button:hover {
+    transform: scale(1.06);
+}
+
+.heartcake-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.heartcake-message {
+    display: none;
+    max-width: 450px;
+    margin: 25px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    color: #a94d70;
+    box-shadow: 0 5px 20px #e7c3d0;
+    line-height: 1.8;
+}
+
+.heartcake-message.show {
+    display: block;
+    animation: heartMessage 1s ease;
+}
+
+@keyframes heartMessage {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#heartcakeConfetti {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.heartcake-confetti-piece {
+    position: absolute;
+    top: -15px;
+    width: 9px;
+    height: 14px;
+    border-radius: 3px;
+    animation: heartConfettiFall 3s linear forwards;
+}
+
+@keyframes heartConfettiFall {
+    to {
+        transform: translateY(450px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .heartcake-section h2 {
+        font-size: 23px;
+    }
+
+    .heartcake {
+        transform: scale(0.85);
+    }
+
+    .heartcake-title {
+        font-size: 19px;
+    }
+
+    .photo-gallery img {
+        width: 85%;
+        height: 250px;
+    }
+}
+/* ===============================
+   FLOATING HEARTS (BIG SIZE) ❤️
+================================ */
+
+#floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -100px;
+    font-size: 60px;              /* BIG default size */
+    color: #e75480;
+    animation: floatHeart 8s linear infinite;
+    opacity: 0.8;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 4px 6px rgba(231, 84, 128, 0.35));
+    user-select: none;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(-50vh) rotate(15deg) scale(1.1);
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(-15deg) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Mobile par thoda chhota */
+@media (max-width: 480px) {
+    .floating-heart {
+        font-size: 42px !important;
+    }
+}
